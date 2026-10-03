@@ -9,6 +9,7 @@ interface ButtonProps {
   icon?: keyof typeof Ionicons.glyphMap;
   disabled?: boolean;
   fullWidth?: boolean;
+  className?: string;
 }
 
 const variants = {
@@ -23,7 +24,7 @@ const textTones = {
   outline: 'ink',
 };
 
-export function Button({ label, onPress, variant = 'primary', icon, disabled, fullWidth }: ButtonProps) {
+export function Button({ label, onPress, variant = 'primary', icon, disabled, fullWidth, className }: ButtonProps) {
   const variantClass = variants[variant];
   const textTone = textTones[variant] as 'ink' | 'taupe' | 'primary' | 'onPrimary';
 
@@ -31,7 +32,7 @@ export function Button({ label, onPress, variant = 'primary', icon, disabled, fu
     <Pressable 
       onPress={disabled ? undefined : onPress}
       disabled={disabled}
-      className={`flex-row items-center justify-center gap-2 h-12 px-6 rounded-full ${variantClass} ${fullWidth ? 'w-full' : ''} ${disabled ? 'opacity-50' : ''}`}
+      className={`flex-row items-center justify-center gap-2 h-12 px-6 rounded-full ${variantClass} ${fullWidth ? 'w-full' : ''} ${disabled ? 'opacity-50' : ''} ${className || ''}`}
     >
       {icon && <Ionicons name={icon} size={20} color={textTone === 'onPrimary' ? '#FFFFFF' : '#4A3E3D'} />}
       <AppText variant="label-lg" tone={textTone}>{label}</AppText>

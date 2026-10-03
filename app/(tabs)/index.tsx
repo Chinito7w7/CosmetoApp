@@ -1,25 +1,27 @@
-import { View, Text } from 'react-native';
+import React from 'react';
+import { ScrollView, View } from 'react-native';
+import { Card, Fab } from '@/src/components/ui';
+import { AppText } from '@/src/components/ui';
+import { useDockClearance } from '@/src/theme/layout';
 
 export default function AgendaScreen() {
+  const dockClearance = useDockClearance();
+
   return (
-    <View className="flex-1 items-center justify-center bg-background">
-      <Text className="font-jakarta-bold text-headline-xl text-ink">Agenda</Text>
-      <View className="flex-row gap-2 mt-4">
-        <View className="bg-skincare px-3 py-1 rounded-full">
-          <Text className="text-ink">Cosmetología</Text>
-        </View>
-        <View className="bg-makeup px-3 py-1 rounded-full">
-          <Text className="text-ink">Maquillaje</Text>
-        </View>
-        <View className="bg-nails px-3 py-1 rounded-full">
-          <Text className="text-ink">Uñas</Text>
-        </View>
+    <ScrollView 
+      className="flex-1 bg-background" 
+      contentContainerStyle={{ paddingBottom: dockClearance + 24 }}
+      keyboardShouldPersistTaps="handled"
+    >
+      <View className="p-6 gap-4">
+        <AppText variant="headline-xl" tone="ink" className="mb-4">Agenda</AppText>
+        {Array.from({ length: 12 }).map((_, i) => (
+          <Card key={i} className="mb-3">
+            <AppText variant="body-md" tone="ink">Turno de ejemplo {i + 1}</AppText>
+          </Card>
+        ))}
       </View>
-      <View className="mt-6 items-center gap-2">
-        <Text className="font-jakarta-bold text-headline-lg text-ink">Headline</Text>
-        <Text className="font-jakarta text-body-md text-taupe">Texto de cuerpo de prueba</Text>
-        <Text className="font-jakarta-semibold text-label-sm text-taupe">ETIQUETA</Text>
-      </View>
-    </View>
+      <Fab icon="add" onPress={() => {}} />
+    </ScrollView>
   );
 }

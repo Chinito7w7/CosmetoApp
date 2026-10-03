@@ -2,21 +2,14 @@ import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/src/theme/colors';
 import { fonts } from '@/src/theme/fonts';
+import { FloatingTabBar } from '@/src/components/FloatingTabBar';
 
 export default function TabLayout() {
   return (
     <Tabs
+      tabBar={(props) => <FloatingTabBar {...props} />}
       screenOptions={{
-        tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: 'gray',
-        tabBarStyle: {
-          backgroundColor: Colors.background,
-        },
-        tabBarLabelStyle: { fontFamily: fonts.semibold, fontSize: 11 },
-        headerStyle: {
-          backgroundColor: Colors.background,
-        },
-        headerTintColor: Colors.text,
+        headerShown: false,
       }}
     >
       <Tabs.Screen
@@ -57,3 +50,4 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+

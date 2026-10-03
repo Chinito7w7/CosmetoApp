@@ -1,9 +1,12 @@
+import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { useState } from 'react';
-import { router } from 'expo-router';
-import { AppText, Button, Card, Avatar, StatusChip, FilterChip } from '@/src/components/ui';
+import { 
+  AppText, Button, Card, Avatar, StatusChip, FilterChip, 
+  TextField, SearchField, EmptyState, Fab, StatCard 
+} from '@/src/components/ui';
 
 export default function ComponentesScreen() {
+  const [search, setSearch] = useState('');
   const [activeFilters, setActiveFilters] = useState({
     one: true,
     two: false,
@@ -15,7 +18,10 @@ export default function ComponentesScreen() {
   };
 
   return (
-    <ScrollView className="flex-1 bg-background p-6">
+    <ScrollView 
+      className="flex-1 bg-background p-6" 
+      keyboardShouldPersistTaps="handled"
+    >
       <View className="gap-8 py-10">
         
         <View className="gap-3">
@@ -34,7 +40,78 @@ export default function ComponentesScreen() {
         </View>
 
         <View className="gap-3">
-          <AppText variant="headline-lg" tone="ink">Botones</AppText>
+          <AppText variant="headline-lg" tone="ink">Inputs y Búsqueda</AppText>
+          <View className="gap-4">
+            <SearchField 
+              value={search} 
+              onChangeText={setSearch} 
+              placeholder="Buscar cliente..." 
+            />
+            <TextField 
+              label="Nombre completo" 
+              placeholder="Ej. Maria Lopez" 
+              required 
+            />
+            <TextField 
+              label="Observaciones" 
+              placeholder="Detalles adicionales..." 
+              multiline 
+            />
+            <TextField 
+              label="Email" 
+              error="Email inválido" 
+              placeholder="email@ejemplo.com" 
+            />
+          </View>
+        </View>
+
+        <View className="gap-3">
+          <AppText variant="headline-lg" tone="ink">Estados Vacíos</AppText>
+          <View className="gap-8">
+            <EmptyState 
+              icon="calendar-outline" 
+              title="No hay turnos hoy" 
+              description="Tómate un descanso o comienza a agendar nuevos turnos." 
+            />
+            <EmptyState 
+              icon="people-outline" 
+              title="Sin clientes" 
+              description="Aún no tienes clientes registrados." 
+              actionLabel="Agregar Cliente" 
+              onAction={() => {}} 
+            />
+          </View>
+        </View>
+
+        <View className="gap-3">
+          <AppText variant="headline-lg" tone="ink">Métricas</AppText>
+          <View className="flex-row gap-3">
+            <StatCard 
+              icon="cash-outline" 
+              label="Ingresos" 
+              value="$150k" 
+              caption="Este mes" 
+              tone="success" 
+            />
+            <StatCard 
+              icon="time-outline" 
+              label="Horas" 
+              value="120h" 
+              caption="Trabajadas" 
+              tone="primary" 
+            />
+            <StatCard 
+              icon="alert-circle-outline" 
+              label="Pendientes" 
+              value="5" 
+              caption="Turnos" 
+              tone="warning" 
+            />
+          </View>
+        </View>
+
+        <View className="gap-3">
+          <AppText variant="headline-lg" tone="ink">Botones y Chips</AppText>
           <View className="gap-3">
             <Button label="Primario" onPress={() => {}} variant="primary" />
             <Button label="Tonal" onPress={() => {}} variant="tonal" />
@@ -43,14 +120,11 @@ export default function ComponentesScreen() {
             <Button label="Con Icono" onPress={() => {}} icon="calendar-outline" />
             <Button label="Ancho Completo" onPress={() => {}} fullWidth />
           </View>
-        </View>
-
-        <View className="gap-3">
-          <AppText variant="headline-lg" tone="ink">Card</AppText>
-          <Card>
-            <AppText variant="headline-sm" tone="ink">Tarjeta de Prueba</AppText>
-            <AppText variant="body-md" tone="taupe">Este es un texto dentro de una tarjeta con sombra suave.</AppText>
-          </Card>
+          <View className="flex-row gap-2 mt-4">
+            <FilterChip label="Todo" active={activeFilters.one} onPress={() => toggleFilter('one')} />
+            <FilterChip label="Activos" active={activeFilters.two} onPress={() => toggleFilter('two')} />
+            <FilterChip label="Vencidos" active={activeFilters.three} onPress={() => toggleFilter('three')} />
+          </View>
         </View>
 
         <View className="gap-3">
@@ -74,16 +148,7 @@ export default function ComponentesScreen() {
           </View>
         </View>
 
-        <View className="gap-3">
-          <AppText variant="headline-lg" tone="ink">Filtros</AppText>
-          <View className="flex-row gap-2">
-            <FilterChip label="Todo" active={activeFilters.one} onPress={() => toggleFilter('one')} />
-            <FilterChip label="Activos" active={activeFilters.two} onPress={() => toggleFilter('two')} />
-            <FilterChip label="Vencidos" active={activeFilters.three} onPress={() => toggleFilter('three')} />
-          </View>
-        </View>
-
-        <Button label="Volver a Ajustes" onPress={() => router.back()} variant="outline" />
+        <Fab icon="add" onPress={() => {}} />
       </View>
     </ScrollView>
   );
