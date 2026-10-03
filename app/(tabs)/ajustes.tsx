@@ -12,6 +12,11 @@ export default function AjustesScreen() {
         variant="tonal" 
         onPress={() => router.push('/componentes')} 
       />
+      <Button 
+        label="Debug base de datos (temporal)" 
+        variant="tonal" 
+        onPress={() => router.push('/db-debug')} 
+      />
     </View>
   );
 }

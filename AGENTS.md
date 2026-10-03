@@ -14,4 +14,7 @@ Contexto completo en docs/constitution.md. Los specs están en specs/.
 - Implementá SOLO el spec que se te indique. No toques nada fuera de su alcance.
 - No instales dependencias que el spec no mencione.
 - Al terminar, corré los comandos de verificación del spec e informá el resultado.
+- Base de datos: NUNCA editar una migración ya aplicada; agregar una nueva.
+- Montos: enteros en pesos. Fechas: texto en hora local ('YYYY-MM-DD HH:MM').
+
 Usuaria final: Milagros. Nav: Agenda, Clientes, Servicios, Ganancias, Ajustes
