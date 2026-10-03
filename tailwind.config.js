@@ -4,6 +4,22 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
+      fontFamily: {
+        jakarta: ['PlusJakartaSans_400Regular'],
+        'jakarta-semibold': ['PlusJakartaSans_600SemiBold'],
+        'jakarta-bold': ['PlusJakartaSans_700Bold'],
+      },
+      fontSize: {
+        'headline-xl': ['28px', { lineHeight: '36px', letterSpacing: '-0.56px' }],
+        'headline-lg': ['24px', { lineHeight: '32px', letterSpacing: '-0.36px' }],
+        'headline-sm': ['18px', { lineHeight: '24px', letterSpacing: '-0.18px' }],
+        'body-lg':     ['16px', { lineHeight: '24px' }],
+        'body-md':     ['14px', { lineHeight: '22px' }],
+        'body-sm':     ['12px', { lineHeight: '18px' }],
+        'label-lg':    ['14px', { lineHeight: '20px', letterSpacing: '0.14px' }],
+        'label-md':    ['12px', { lineHeight: '16px', letterSpacing: '0.24px' }],
+        'label-sm':    ['11px', { lineHeight: '14px', letterSpacing: '0.44px' }],
+      },
       colors: {
         background: '#FAF5F5',
         porcelain: '#FFFDFB',
