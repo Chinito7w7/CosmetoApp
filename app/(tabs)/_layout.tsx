@@ -37,7 +37,14 @@ export default function TabLayout() {
         name="servicios"
         options={{
           title: 'Servicios',
-          tabBarIcon: ({ color }) => <Ionicons name="pricetags-outline" size={24} color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons name="leaf-outline" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="ganancias"
+        options={{
+          title: 'Ganancias',
+          tabBarIcon: ({ color }) => <Ionicons name="stats-chart-outline" size={24} color={color} />,
         }}
       />
       <Tabs.Screen

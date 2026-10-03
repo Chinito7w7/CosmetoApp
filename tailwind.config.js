@@ -20,7 +20,19 @@ module.exports = {
         'label-md':    ['12px', { lineHeight: '16px', letterSpacing: '0.24px' }],
         'label-sm':    ['11px', { lineHeight: '14px', letterSpacing: '0.44px' }],
       },
+      borderRadius: {
+        sm: '4px',
+        DEFAULT: '8px',
+        md: '12px',
+        lg: '16px',
+        xl: '24px',
+        full: '9999px',
+      },
       colors: {
+        'on-primary': '#FFFFFF',
+        background: '#FAF5F5',
+
+        borderRadius: { sm: '4px', DEFAULT: '8px', md: '12px', lg: '16px', xl: '24px', full: '9999px' },
         background: '#FAF5F5',
         porcelain: '#FFFDFB',
         surface: '#FFFFFF',

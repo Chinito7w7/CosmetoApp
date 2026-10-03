@@ -4,6 +4,7 @@ App móvil Android, monousuario y offline, para una profesional de estética.
 Contexto completo en docs/constitution.md. Los specs están en specs/.
 
 ## Reglas
+- Antes de implementar, leer docs/decisiones.md; manda sobre constitution.md y DESIGN.md
 - Stack: Expo (React Native) + TypeScript estricto + Expo Router.
 - Datos: SQLite local con expo-sqlite. Sin backend ni nube.
 - Formularios: react-hook-form + zod.
@@ -13,3 +14,4 @@ Contexto completo en docs/constitution.md. Los specs están en specs/.
 - Implementá SOLO el spec que se te indique. No toques nada fuera de su alcance.
 - No instales dependencias que el spec no mencione.
 - Al terminar, corré los comandos de verificación del spec e informá el resultado.
+Usuaria final: Milagros. Nav: Agenda, Clientes, Servicios, Ganancias, Ajustes
