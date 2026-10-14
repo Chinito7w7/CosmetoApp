@@ -9,6 +9,7 @@ interface ButtonProps {
   icon?: keyof typeof Ionicons.glyphMap;
   disabled?: boolean;
   fullWidth?: boolean;
+  size?: 'sm' | 'md';
   className?: string;
 }
 
@@ -24,18 +25,24 @@ const textTones = {
   outline: 'ink',
 };
 
-export function Button({ label, onPress, variant = 'primary', icon, disabled, fullWidth, className }: ButtonProps) {
+export function Button({ label, onPress, variant = 'primary', icon, disabled, fullWidth, size = 'md', className }: ButtonProps) {
   const variantClass = variants[variant];
   const textTone = textTones[variant] as 'ink' | 'taupe' | 'primary' | 'onPrimary';
+  
+  const sizeClasses = size === 'sm' 
+    ? 'h-9 px-4' 
+    : 'h-12 px-6';
+
+  const textVariant = size === 'sm' ? 'label-md' : 'label-lg';
 
   return (
     <Pressable 
       onPress={disabled ? undefined : onPress}
       disabled={disabled}
-      className={`flex-row items-center justify-center gap-2 h-12 px-6 rounded-full ${variantClass} ${fullWidth ? 'w-full' : ''} ${disabled ? 'opacity-50' : ''} ${className || ''}`}
+      className={`flex-row items-center justify-center gap-2 rounded-full ${sizeClasses} ${variantClass} ${fullWidth ? 'w-full' : ''} ${disabled ? 'opacity-50' : ''} ${className || ''}`}
     >
-      {icon && <Ionicons name={icon} size={20} color={textTone === 'onPrimary' ? '#FFFFFF' : '#4A3E3D'} />}
-      <AppText variant="label-lg" tone={textTone}>{label}</AppText>
+      {icon && <Ionicons name={icon} size={size === 'sm' ? 16 : 20} color={textTone === 'onPrimary' ? '#FFFFFF' : '#4A3E3D'} />}
+      <AppText variant={textVariant} tone={textTone}>{label}</AppText>
     </Pressable>
   );
 }

@@ -165,7 +165,44 @@ export default function DbDebugScreen() {
     await refresh();
   };
 
+  const loadDemoServices = async () => {
+    const existing = await db.getFirstAsync('SELECT id FROM services WHERE name LIKE "DEMO %" LIMIT 1');
+    if (existing) return;
+
+    const categories = await listCategories(db, true);
+    const getCatId = (name: string) => categories.find(c => c.name === name)?.id ?? 0;
+
+    const demoData = [
+      { cat: 'Cosmetología', name: 'DEMO Limpieza facial profunda', dur: 60, price: 18000 },
+      { cat: 'Cosmetología', name: 'DEMO Peeling renovador', dur: 45, price: 22000 },
+      { cat: 'Cosmetología', name: 'DEMO Dermaplaning', dur: 50, price: 20000, desc: 'Exfoliación con bisturí y sérum' },
+      { cat: 'Maquillaje', name: 'DEMO Maquillaje social', dur: 60, price: 25000 },
+      { cat: 'Maquillaje', name: 'DEMO Maquillaje de novia', dur: 120, price: 60000, inactive: true },
+      { cat: 'Uñas', name: 'DEMO Semipermanente', dur: 90, price: 12000 },
+    ];
+
+    for (const item of demoData) {
+      const id = await createService(db, {
+        categoryId: getCatId(item.cat),
+        name: item.name,
+        durationMin: item.dur,
+        basePrice: item.price,
+        description: item.desc,
+      });
+      if (item.inactive) {
+        await setServiceActive(db, id, false);
+      }
+    }
+    await refresh();
+  };
+
+  const clearDemoServices = async () => {
+    await db.runAsync('DELETE FROM services WHERE name LIKE "DEMO %"');
+    await refresh();
+  };
+
   return (
+
     <ScrollView className="flex-1 bg-background p-6">
       <View className="gap-6 py-10">
         <AppText variant="headline-xl" tone="ink">Debug Database</AppText>
@@ -189,13 +226,22 @@ export default function DbDebugScreen() {
           ))}
         </View>
 
-        <View className="gap-2">
-          <AppText variant="headline-sm" tone="ink">Debug Counter</AppText>
-          <AppText variant="headline-lg" tone="primary">{debugInfo.counter}</AppText>
-          <Button label="Sumar contador" onPress={incrementCounter} variant="primary" />
-        </View>
+         <View className="gap-2">
+           <AppText variant="headline-sm" tone="ink">Debug Counter</AppText>
+           <AppText variant="headline-lg" tone="primary">{debugInfo.counter}</AppText>
+           <Button label="Sumar contador" onPress={incrementCounter} variant="primary" />
+         </View>
 
-        <View className="gap-4 mt-4">
+         <View className="gap-2">
+           <AppText variant="headline-sm" tone="ink">Datos de Prueba</AppText>
+           <View className="flex-row gap-2">
+             <Button label="Cargar DEMO" onPress={loadDemoServices} variant="tonal" fullWidth />
+             <Button label="Borrar DEMO" onPress={clearDemoServices} variant="outline" fullWidth />
+           </View>
+         </View>
+
+         <View className="gap-4 mt-4">
+
           <AppText variant="headline-sm" tone="ink">Pruebas de Restricciones</AppText>
           <Button label="Ejecutar Pruebas" onPress={runTests} variant="outline" />
           <View className="gap-1">
