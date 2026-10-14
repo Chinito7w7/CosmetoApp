@@ -16,5 +16,6 @@ Contexto completo en docs/constitution.md. Los specs están en specs/.
 - Al terminar, corré los comandos de verificación del spec e informá el resultado.
 - Base de datos: NUNCA editar una migración ya aplicada; agregar una nueva.
 - Montos: enteros en pesos. Fechas: texto en hora local ('YYYY-MM-DD HH:MM').
+-Datos: un módulo por tema en src/db/<nombre>.ts, funciones que reciben db, entradas validadas con zod. Las pantallas no escriben SQL.
 
 Usuaria final: Milagros. Nav: Agenda, Clientes, Servicios, Ganancias, Ajustes

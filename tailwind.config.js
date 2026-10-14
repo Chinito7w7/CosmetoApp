@@ -31,9 +31,6 @@ module.exports = {
       colors: {
         'on-primary': '#FFFFFF',
         background: '#FAF5F5',
-
-        borderRadius: { sm: '4px', DEFAULT: '8px', md: '12px', lg: '16px', xl: '24px', full: '9999px' },
-        background: '#FAF5F5',
         porcelain: '#FFFDFB',
         surface: '#FFFFFF',
         primary: { DEFAULT: '#E88D90', pressed: '#D9777A' },
@@ -46,8 +43,9 @@ module.exports = {
         success: { bg: '#E8F5EC', fg: '#2D6A4F' },
         warning: { bg: '#FEF3D6', fg: '#8F5D18' },
         danger:  { bg: '#FCEAEB', fg: '#A23E48' },
-        
-        // Áreas de servicio
+        sand: '#EADCD3',
+        sage: '#CFE3D4',
+        lilac: '#E4D8EE',
         skincare: '#E88D90',
         makeup: '#F4A896',
         nails: '#FBD6C6',
