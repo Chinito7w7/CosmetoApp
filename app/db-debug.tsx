@@ -235,8 +235,8 @@ export default function DbDebugScreen() {
          <View className="gap-2">
            <AppText variant="headline-sm" tone="ink">Datos de Prueba</AppText>
            <View className="flex-row gap-2">
-             <Button label="Cargar DEMO" onPress={loadDemoServices} variant="tonal" fullWidth />
-             <Button label="Borrar DEMO" onPress={clearDemoServices} variant="outline" fullWidth />
+             <Button label="Cargar DEMO" onPress={loadDemoServices} variant="tonal" className="flex-1" />
+             <Button label="Borrar DEMO" onPress={clearDemoServices} variant="outline" className="flex-1" />
            </View>
          </View>
 
